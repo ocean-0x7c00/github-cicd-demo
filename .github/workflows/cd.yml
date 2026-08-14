@@ -41,9 +41,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            docker pull ghcr.io/ocean-0x7c00/github-cicd-demo:${{ github.sha }}
+            docker pull ghcr.1ms.run/ocean-0x7c00/github-cicd-demo:${{ github.sha }}
             docker stop github-cicd-demo || true
             docker rm github-cicd-demo || true
             docker run -d --name github-cicd-demo --restart unless-stopped -p 8080:8080 \
-              ghcr.io/ocean-0x7c00/github-cicd-demo:${{ github.sha }}
+              ghcr.1ms.run/ocean-0x7c00/github-cicd-demo:${{ github.sha }}
